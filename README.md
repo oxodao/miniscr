@@ -53,7 +53,7 @@ The first file is `config.json` and contains the following (default values):
 
 The second file is the secret file. It is useful when you want to commit your dotfiles, you can just exclude this file.
 
-In the `upload_destination` section, every `args` value can start with `secret:` which lets you retrieve a secret from this simple store.
+In the `upload_destination` section, every `args` value can start with `secrets:` which lets you retrieve a secret from this simple store.
 
 Exemple:
 In config, define an api key that comes from the secrets:
@@ -61,8 +61,8 @@ In config, define an api key that comes from the secrets:
 {
     [...],
     "args": {
-        "base_url": "secret:my-slink-url",
-        "api_key": "secret:my-api-key"
+        "base_url": "secrets:my-slink-url",
+        "api_key": "secrets:my-api-key"
     }
 }
 ```
