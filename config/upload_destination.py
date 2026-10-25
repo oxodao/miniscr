@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
-UploadType = Literal['slink', 'imgbb']
+UploadType = Literal['slink', 'imgbb', 'catbox']
 
 
 @dataclass
@@ -13,7 +13,7 @@ class UploadDestination:
 
     @classmethod
     def from_dict(cls, data: dict) -> UploadDestination:
-        valid_types = ("slink", "imgbb")
+        valid_types = ("slink", "imgbb", "catbox")
 
         if data["type"] not in valid_types:
             raise ValueError(f"Invalid upload type: {data['type']}")

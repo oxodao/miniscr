@@ -1,7 +1,7 @@
 import argparse
 
 from config import Config
-from destinations import CopyToClipboardDestination
+from destinations import get_upload_destination
 from utils import send_notification
 from wm import get_current_wm
 
@@ -46,9 +46,9 @@ def main():
     # @TODO: Open the GUI
 
     # dest = SaveDestination(config, wm)
-    dest = CopyToClipboardDestination(config, wm)
+    # dest = CopyToClipboardDestination(config, wm)
     # dest = get_upload_destination(config, wm, config.upload_destination[0])
-    # dest = get_upload_destination(config, wm, config.upload_destination[1])
+    dest = get_upload_destination(config, wm, config.upload_destination[1])
     dest.action(screenshot)
 
 if __name__ == "__main__":

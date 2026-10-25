@@ -1,13 +1,14 @@
 from config import Config
 from config import UploadDestination as UploadDestinationConfig
 
+from .catbox import CatboxDestination
 from .copy_to_clipboard import CopyToClipboardDestination
 from .destination import UploadDestination
 from .imgbb import ImgbbDestination
 from .save import SaveDestination
 from .slink import SlinkDestination
 
-upload_destinations = [SlinkDestination, ImgbbDestination]
+upload_destinations = [SlinkDestination, ImgbbDestination, CatboxDestination]
 
 def get_upload_destination(
     app_config: Config,

@@ -38,6 +38,14 @@ The first file is `config.json` and contains the following (default values):
                 "expiration": null, // Optional, in seconds between 60 and 15552000 (6 month)
                 "hide_user_agent": false // optional, default false, won't send the user agent
             }
+        },
+        {
+            "type": "catbox",
+            "name": "Catbox",
+            "args": {
+                "userhash": "", // Optional, link uploads to your catbox account, uploads are anonymous otherwise
+                "hide_user_agent": false // optional, default false, won't send the user agent
+            }
         }
     ]
 }
@@ -109,7 +117,7 @@ Finally, you need to add your WM to the registered wm in the `supported_wms` arr
 If your favorite image host is not available, you can add it by extending the class `UploadDestination` in the `destinations` package.
 
 
-Then you just have to add it to the registered destinations in the `upload_destinations` array in `destinations/__init__.py`.
+Then you just have to add it to the registered destinations in the `upload_destinations` array in `destinations/__init__.py`. It also should be added to the `config/upload_destination.py` type and valid_types list so that it is recognized by the config.
 
 ## AI Usage
 
