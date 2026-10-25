@@ -1,8 +1,10 @@
-from dataclasses import dataclass, field
-from pathlib import Path
-from .upload_destination import UploadDestination
 import json
 import os
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from .upload_destination import UploadDestination
+
 
 def load_secrets(secrets_path: Path) -> dict[str, str]:
     if not secrets_path.exists():
@@ -34,7 +36,7 @@ class Config:
         return self.secrets.get(val[len('secrets:'):])
 
     @classmethod
-    def load(cls) -> "Config":
+    def load(cls) -> Config:
         base_config_dir = Path(
             os.environ.get("XDG_CONFIG_HOME") or (Path.home() / ".config")
         ) / 'miniscr'

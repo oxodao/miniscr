@@ -1,9 +1,11 @@
-from config import Config, UploadDestination as UploadDestinationConfig
-from .destination import UploadDestination
-from .save import SaveDestination
+from config import Config
+from config import UploadDestination as UploadDestinationConfig
+
 from .copy_to_clipboard import CopyToClipboardDestination
-from .slink import SlinkDestination
+from .destination import UploadDestination
 from .imgbb import ImgbbDestination
+from .save import SaveDestination
+from .slink import SlinkDestination
 
 upload_destinations = [SlinkDestination, ImgbbDestination]
 
@@ -19,9 +21,9 @@ def get_upload_destination(
     raise RuntimeError(f"No matching upload destination found for config: {config}")
 
 __all__ = [
-    'upload_destinations',
-    'UploadDestination',
-    'SaveDestination',
     'CopyToClipboardDestination',
+    'SaveDestination',
+    'UploadDestination',
     'get_upload_destination',
+    'upload_destinations',
 ]

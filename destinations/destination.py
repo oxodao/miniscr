@@ -1,9 +1,11 @@
-from wm import WM
-from config import Config
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import ClassVar
+
+from config import Config
 from config import UploadDestination as UploadDestinationConfig
 from utils import UploadResult, send_notification
+from wm import WM
 
 
 class Destination(ABC):
@@ -32,7 +34,7 @@ class Destination(ABC):
 
 class UploadDestination(Destination):
     _name: str = "base"
-    _args: dict[str, str] = {}
+    _args: ClassVar[dict[str, str]] = {}
 
     def __init__(self, app_config: Config, wm: WM, config: UploadDestinationConfig):
         super().__init__(app_config, wm)

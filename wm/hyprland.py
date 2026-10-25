@@ -1,6 +1,8 @@
-from utils import exec_command_json, exec_region_command, Region, Point
-from .wm import Wayland
 import os
+
+from utils import Point, Region, exec_command_json, exec_region_command
+
+from .wm import Wayland
 
 
 class Hyprland(Wayland):

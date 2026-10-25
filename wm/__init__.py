@@ -1,6 +1,6 @@
-from .wm import WM, Wayland
 from .hyprland import Hyprland
 from .sway import Sway
+from .wm import WM, Wayland
 
 supported_wms: list[type[WM]] = [
     Hyprland,
@@ -15,9 +15,9 @@ def get_current_wm() -> WM:
     raise RuntimeError("No supported window manager detected.")
 
 __all__ = [
-    'supported_wms',
     "WM",
     'Wayland',
     # 'X11',
     'get_current_wm',
+    'supported_wms',
 ]

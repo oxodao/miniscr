@@ -1,7 +1,9 @@
-from .destination import UploadDestination
+import requests
+
 from config import UploadDestination as UploadDestinationConfig
 from utils import UploadResult, get_picture_mimetype
-import requests
+
+from .destination import UploadDestination
 
 
 class ImgbbDestination(UploadDestination):
@@ -17,10 +19,12 @@ class ImgbbDestination(UploadDestination):
         try:
             expiration = int(expiration)
         except (TypeError, ValueError):
-            raise ValueError(f'Invalid expiration, expected a number of seconds, got: {expiration}')
+            raise ValueError(
+                f'Invalid expiration, expected a number of seconds, got: {expiration}'
+            ) from None
 
         if not 60 <= expiration <= 15552000:
-            raise ValueError(f'Invalid expiration, must be between 60 and 15552000')
+            raise ValueError('Invalid expiration, must be between 60 and 15552000')
 
         return expiration
 

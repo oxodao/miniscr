@@ -1,6 +1,7 @@
-from .types import Region
-import subprocess
 import json
+import subprocess
+
+from .types import Region
 
 
 def exec_command(command: str, input_data: str | None = None) -> str | None:

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from utils import send_notification, convert_picture_to_format
+from utils import convert_picture_to_format, send_notification
 
 from .destination import Destination
 

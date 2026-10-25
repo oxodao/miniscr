@@ -1,7 +1,9 @@
-from .destination import UploadDestination
-from config import UploadDestination as UploadDestinationConfig
-from utils import UploadResult, get_picture_mimetype, send_notification
 import requests
+
+from config import UploadDestination as UploadDestinationConfig
+from utils import UploadResult, get_picture_mimetype
+
+from .destination import UploadDestination
 
 
 class SlinkDestination(UploadDestination):

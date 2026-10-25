@@ -1,5 +1,6 @@
-from PIL import Image
 from io import BytesIO
+
+from PIL import Image
 
 formats_mapping = {
     "jpg": "JPEG",
@@ -31,7 +32,7 @@ def convert_picture_to_format(picture: bytes, target_format: str) -> bytes:
 def get_picture_mimetype(picture: bytes) -> str:
     image = Image.open(BytesIO(picture))
     if image.format is None:
-        raise Exception(f'No format for this picture')
+        raise Exception('No format for this picture')
 
     if image.format.lower() not in mimetypes:
         raise Exception(f'Unknown mimetype for format {image.format.lower()}')

@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
-from utils import exec_command_json, exec_region_command, Region, Point
 import subprocess
+from abc import ABC, abstractmethod
+
+from utils import Point, Region, exec_region_command
 
 
 class WM(ABC):

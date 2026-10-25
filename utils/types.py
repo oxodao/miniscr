@@ -1,5 +1,6 @@
 from typing import TypedDict
 
+
 class Point(TypedDict):
     x: float
     y: float

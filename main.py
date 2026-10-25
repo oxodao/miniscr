@@ -1,8 +1,10 @@
-from utils import send_notification
-from destinations import SaveDestination, CopyToClipboardDestination, get_upload_destination
-from wm import get_current_wm
-from config import Config
 import argparse
+
+from config import Config
+from destinations import CopyToClipboardDestination
+from utils import send_notification
+from wm import get_current_wm
+
 
 def main():
     parser = argparse.ArgumentParser(

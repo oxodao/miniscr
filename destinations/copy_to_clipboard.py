@@ -1,4 +1,4 @@
-from utils import send_notification, convert_picture_to_format, mimetypes
+from utils import convert_picture_to_format, mimetypes, send_notification
 
 from .destination import Destination
 
@@ -17,7 +17,7 @@ class CopyToClipboardDestination(Destination):
 
             send_notification(
                 title='Screenshot copied',
-                description=f'Image copied to clipboard.',
+                description='Image copied to clipboard.',
             )
         except Exception as e:
             send_notification(

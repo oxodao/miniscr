@@ -12,7 +12,7 @@ class UploadDestination:
     args: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
-    def from_dict(cls, data: dict) -> "UploadDestination":
+    def from_dict(cls, data: dict) -> UploadDestination:
         valid_types = ("slink", "imgbb")
 
         if data["type"] not in valid_types:

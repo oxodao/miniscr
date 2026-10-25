@@ -113,7 +113,7 @@ Then you just have to add it to the registered destinations in the `upload_desti
 
 ## AI Usage
 
-This project is **NOT** vibe-coded. It has really low AI usage (basically I had a side chatgpt chat that helped me but no agentic workflow). It is written by hand.
+This project is **NOT** vibe-coded. It has really low AI usage (basically I had a side chatgpt chat that helped me sometime but no agentic workflow or generated code > ~10 lines). It is written by hand and properly reviewed.
 
 ## LICENSE
 
