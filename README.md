@@ -8,7 +8,11 @@ It should work on most x11 desktop environment but it is a bit more finicky on W
 
 ## Setup
 
-@TODO: Package the app properly and determine how it should be installed
+Get the `.deb` file from the release then
+
+```sh
+$ sudo apt install ./miniscr_0.1.0_all.deb
+```
 
 ## Shortcuts
 
