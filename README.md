@@ -82,11 +82,16 @@ Then in the secrets file add it:
 
 ## Additional piece of software required
 
+List of debian package, you should adapt to your distribution if you're not running debian.
+
 On wayland you also need:
 - slurp
 - grim
 - wl-copy
 - notify-send
+- python3-gi
+- gir1.2-gtk-4.0
+- gir1.2-gtk4layershell-1.0
 
 On x11 you also need:
 - [equivalent to slurp]

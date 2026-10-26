@@ -11,6 +11,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pygobject-stubs>=2.20.0",
     "ruff>=0.17.2",
 ]
 
@@ -23,3 +24,6 @@ select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM", "RUF"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["config", "destinations", "gui", "utils", "wm"]
+
+[tool.uv]
+config-settings-package = { pygobject-stubs = { config = "Gtk4,Gdk4" } }

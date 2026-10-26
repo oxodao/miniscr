@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import ClassVar
 
 from config import Config
 from config import UploadDestination as UploadDestinationConfig
@@ -34,7 +33,7 @@ class Destination(ABC):
 
 class UploadDestination(Destination):
     _name: str = "base"
-    _args: ClassVar[dict[str, str]] = {}
+    _args: dict[str, str]
 
     def __init__(self, app_config: Config, wm: WM, config: UploadDestinationConfig):
         super().__init__(app_config, wm)
