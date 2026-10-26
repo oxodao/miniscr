@@ -1,0 +1,73 @@
+name: 'Release'
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: 'write'
+
+jobs:
+  build-deb:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Check versions'
+        run: |
+          set -eu
+          VERSION="${GITHUB_REF_NAME#v}"
+          CHANGELOG_VERSION="$(dpkg-parsechangelog -SVersion)"
+          PROJECT_VERSION="$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")"
+
+          echo "tag:       $VERSION"
+          echo "changelog: $CHANGELOG_VERSION"
+          echo "pyproject: $PROJECT_VERSION"
+
+          test "$VERSION" = "$CHANGELOG_VERSION"
+          test "$VERSION" = "$PROJECT_VERSION"
+
+      - name: 'Build .deb'
+        run: |
+          set -eu
+          mkdir -p dist
+          docker run --rm -v "$PWD:/src" -w /src debian:sid bash -c '
+            set -eu
+            apt-get update
+            apt-get install -y --no-install-recommends \
+              build-essential debhelper dpkg-dev fakeroot \
+              dh-python pybuild-plugin-pyproject \
+              python3 python3-hatchling
+            dpkg-buildpackage -us -uc -b
+            cp ../miniscr_*.deb /src/dist/
+          '
+
+      - name: 'Upload .deb'
+        uses: 'actions/upload-artifact@v4'
+        with:
+          name: 'deb'
+          path: 'dist/*.deb'
+          if-no-files-found: 'error'
+
+  release:
+    needs: 'build-deb'
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: 'write'
+    steps:
+      - name: 'Download .deb'
+        uses: 'actions/download-artifact@v4'
+        with:
+          name: 'deb'
+          path: 'dist'
+
+      - name: 'Create release'
+        env:
+          GH_TOKEN: '${{ github.token }}'
+          GH_REPO: '${{ github.repository }}'
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.deb \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
