@@ -18,6 +18,12 @@ def get_destination(app_config: Config, wm: WM, action: str) -> Destination:
     if action == 'save':
         return SaveDestination(app_config, wm)
 
+    if action.startswith('upload_'):
+        dest_idx = int(action[len('upload_'):])
+        dest_cfg = app_config.upload_destination[dest_idx]
+
+        return get_upload_destination(app_config, wm, dest_cfg)
+
     raise Exception(f'Unknown action error: {action}')
 
 def get_upload_destination(

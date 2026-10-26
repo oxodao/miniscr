@@ -48,11 +48,11 @@ def main():
     
     has_next_step = True
     while has_next_step:
-        action = menu.run()
-        if not action or action == 'cancel' or not screenshot:
-            return
-
         try:
+            action = menu.run()
+            if not action or action == 'cancel' or not screenshot:
+                return
+
             dest = get_destination(
                 app_config=config,
                 wm=wm,

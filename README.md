@@ -4,6 +4,27 @@ MiniScr is an alternative to `Greenshot` on Windows but for Linux.
 
 It should work on most x11 desktop environment but it is a bit more finicky on Wayland due to its abysmal obsession on breaking most apps for security's sake.
 
+## Setup
+
+@TODO: Package the app properly and determine how it should be installed
+
+## Shortcuts
+
+To start the software you have to set it up in you WM, we don't do that for you.
+
+Exemple for sway:
+```
+bindsym $mod+s miniscr -m region
+bindsym $mod+Shift+s miniscr -m window
+bindsym $mod+Ctrl+s miniscr -m monitor
+```
+
+When the context menu shows up, you have the following shortcuts:
+- Escape: Close without doing anything
+- c: Copy to clipboard
+- s: Save to the default file location
+- u: Upload to the first upload destination
+
 ## Config
 
 The config is split into two files, both located by default at `~/.config/miniscr`.
@@ -17,8 +38,6 @@ The first file is `config.json` and contains the following (default values):
     "save_directory": "~/Pictures",
     "filename_format": "screenshot_%Y%m%d_%H%M%S",
     "picture_format": "png", // Supports png, jpg or webp
-    "menu_offset_x": 0, // Sometime, retrieving the cursor pos get wrong value, so you can fix it here if required
-    "menu_offset_y": 0,
     "upload_destination": [ // Default to empty
         {
             "type": "slink",
@@ -130,4 +149,23 @@ This project is **NOT** vibe-coded. It has really low AI usage (basically I had 
 
 ## LICENSE
 
-@TODO: Consider this as ALL RIGHT RESERVED until the license is set (basically once it works as I want on Hyprland / SwayFX).
+```
+MiniScr - A simple screenshotting tool for Linux
+Copyright (C) 2026 - Oxodao
+
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
