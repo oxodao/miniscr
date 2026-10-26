@@ -1,4 +1,5 @@
-from utils import Insets, empty_insets
+from ..utils import Insets, empty_insets
+
 
 def clamp_position(x: int, y: int, width: int, height: int, screen_width: int, screen_height: int, reserved: Insets | None = None) -> tuple[int, int]:
     reserved = reserved if reserved is not None else empty_insets()

@@ -3,10 +3,10 @@
 
 import argparse
 
-from config import Config
-from destinations import get_destination
-from utils import send_notification
-from wm import get_current_wm
+from .config import Config
+from .destinations import get_destination
+from .utils import send_notification
+from .wm import get_current_wm
 
 
 def main():
@@ -46,7 +46,7 @@ def main():
 
         return
 
-    from gui import Menu
+    from .gui import Menu
     menu = Menu(config, wm)
     
     has_next_step = True

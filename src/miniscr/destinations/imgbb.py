@@ -3,9 +3,8 @@
 
 import requests
 
-from config import UploadDestination as UploadDestinationConfig
-from utils import UploadResult, get_picture_mimetype
-
+from ..config import UploadDestination as UploadDestinationConfig
+from ..utils import UploadResult, get_picture_mimetype
 from .destination import UploadDestination
 
 

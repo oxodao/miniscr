@@ -3,8 +3,7 @@
 
 import os
 
-from utils import Insets, Point, Region, exec_command_json, exec_region_command
-
+from ..utils import Insets, Point, Region, exec_command_json, exec_region_command
 from .wm import Wayland
 
 

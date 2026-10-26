@@ -3,9 +3,8 @@
 
 from gi.repository import Gdk, GLib, Gtk, Gtk4LayerShell
 
-from config import Config
-from wm import WM
-
+from ..config import Config
+from ..wm import WM
 from .positions import clamp_position
 
 CSS = """

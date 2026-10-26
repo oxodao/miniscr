@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2026 Oxodao
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import Any, Literal
 

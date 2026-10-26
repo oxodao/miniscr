@@ -3,7 +3,7 @@
 
 from .commands import exec_command, exec_command_json, exec_region_command, send_notification
 from .picture_format import convert_picture_to_format, get_picture_mimetype, mimetypes
-from .types import Point, Region, UploadResult, Insets, empty_insets
+from .types import Insets, Point, Region, UploadResult, empty_insets
 
 __all__ = [
     'Insets',
@@ -11,11 +11,11 @@ __all__ = [
     'Region',
     'UploadResult',
     'convert_picture_to_format',
+    'empty_insets',
     'exec_command',
     'exec_command_json',
     'exec_region_command',
     'get_picture_mimetype',
     'mimetypes',
     'send_notification',
-    'empty_insets',
 ]

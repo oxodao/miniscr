@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2026 Oxodao
 
-from config import Config
-from config import UploadDestination as UploadDestinationConfig
-from wm import WM
-
+from ..config import Config
+from ..config import UploadDestination as UploadDestinationConfig
+from ..wm import WM
 from .catbox import CatboxDestination
 from .copy_to_clipboard import CopyToClipboardDestination
 from .destination import Destination, UploadDestination

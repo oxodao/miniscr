@@ -4,7 +4,7 @@
 import subprocess
 from abc import ABC, abstractmethod
 
-from utils import Insets, Point, Region, exec_region_command
+from ..utils import Insets, Point, Region, exec_region_command
 
 
 class WM(ABC):

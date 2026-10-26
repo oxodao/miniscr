@@ -8,3 +8,14 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Debian packaging
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/miniscr/
+debian/*.substvars
+.pybuild/
+*.deb
+*.buildinfo
+*.changes

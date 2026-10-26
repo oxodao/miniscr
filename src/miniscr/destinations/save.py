@@ -3,8 +3,7 @@
 
 from pathlib import Path
 
-from utils import convert_picture_to_format, send_notification
-
+from ..utils import convert_picture_to_format, send_notification
 from .destination import Destination
 
 

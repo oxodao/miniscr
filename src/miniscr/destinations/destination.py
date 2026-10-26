@@ -4,10 +4,10 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-from config import Config
-from config import UploadDestination as UploadDestinationConfig
-from utils import UploadResult, send_notification
-from wm import WM
+from ..config import Config
+from ..config import UploadDestination as UploadDestinationConfig
+from ..utils import UploadResult, send_notification
+from ..wm import WM
 
 
 class Destination(ABC):

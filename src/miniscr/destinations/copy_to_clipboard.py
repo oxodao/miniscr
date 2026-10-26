@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2026 Oxodao
 
-from utils import convert_picture_to_format, mimetypes, send_notification
-
+from ..utils import convert_picture_to_format, mimetypes, send_notification
 from .destination import Destination
 
 
