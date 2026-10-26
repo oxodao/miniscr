@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) 2026 Oxodao
+
 import os
 
 from utils import Point, Region, exec_command_json, exec_region_command

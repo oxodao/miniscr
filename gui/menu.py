@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) 2026 Oxodao
+
 from gi.repository import Gdk, GLib, Gtk, Gtk4LayerShell
 
 from config import Config

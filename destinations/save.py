@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) 2026 Oxodao
+
 from pathlib import Path
 
 from utils import convert_picture_to_format, send_notification

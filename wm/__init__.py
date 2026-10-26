@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) 2026 Oxodao
+
 from .hyprland import Hyprland
 from .sway import Sway
 from .wm import WM, Wayland
