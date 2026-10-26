@@ -1,5 +1,7 @@
 # MiniScr
 
+![Demo](.github/readme/demo.webp)
+
 MiniScr is an alternative to `Greenshot` on Windows but for Linux.
 
 It should work on most x11 desktop environment but it is a bit more finicky on Wayland due to its abysmal obsession on breaking most apps for security's sake.
