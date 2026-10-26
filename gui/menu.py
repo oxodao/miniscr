@@ -6,6 +6,8 @@ from gi.repository import Gdk, GLib, Gtk, Gtk4LayerShell
 from config import Config
 from wm import WM
 
+from .positions import clamp_position
+
 CSS = """
 window.menu {
     background: transparent;
@@ -60,7 +62,7 @@ class Menu:
         Gtk4LayerShell.init_for_window(self._window)
         Gtk4LayerShell.set_layer(self._window, Gtk4LayerShell.Layer.OVERLAY)
         Gtk4LayerShell.set_keyboard_mode(self._window, Gtk4LayerShell.KeyboardMode.EXCLUSIVE)
-        Gtk4LayerShell.set_exclusive_zone(self._window, 0)
+        Gtk4LayerShell.set_exclusive_zone(self._window, -1)
 
         self._install_css()
         self._build()
@@ -178,12 +180,67 @@ class Menu:
 
         return True
 
+    def _set_position(self):
+        position = self._wm.get_cursor_position()
+        display = Gdk.Display.get_default()
+
+        if position is None or display is None:
+            return
+
+        x = position['x']
+        y = position['y']
+
+        monitors = display.get_monitors()
+
+        for index in range(monitors.get_n_items()):
+            monitor = monitors.get_item(index)
+            if monitor is None:
+                continue
+
+            geometry = monitor.get_geometry()
+
+            if not (
+                geometry.x <= x < geometry.x + geometry.width
+                and geometry.y <= y < geometry.y + geometry.height
+            ):
+                continue
+
+            Gtk4LayerShell.set_monitor(self._window, monitor)
+            Gtk4LayerShell.set_anchor(self._window, Gtk4LayerShell.Edge.TOP, True)
+            Gtk4LayerShell.set_anchor(self._window, Gtk4LayerShell.Edge.LEFT, True)
+
+            connector = monitor.get_connector()
+
+            reserved = (
+                self._wm.get_reserved_area(connector)
+                if connector is not None
+                else None
+            )
+            _, width, _, _ = self.listbox.measure(Gtk.Orientation.HORIZONTAL, -1)
+            _, height, _, _ = self.listbox.measure(Gtk.Orientation.VERTICAL, width)
+
+            local_x, local_y = clamp_position(
+                x=int(x - geometry.x),
+                y=int(y - geometry.y),
+                width=width,
+                height=height,
+                screen_width=geometry.width,
+                screen_height=geometry.height,
+                reserved=reserved,
+            )
+
+            Gtk4LayerShell.set_margin(self._window, Gtk4LayerShell.Edge.LEFT, local_x)
+            Gtk4LayerShell.set_margin(self._window, Gtk4LayerShell.Edge.TOP, local_y)
+
+            return
+
     def _on_close(self, window):
         self._loop.quit()
 
         return False
 
     def run(self) -> str | None:
+        self._set_position()
         self._window.present()
         self._loop.run()
 

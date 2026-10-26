@@ -46,10 +46,10 @@ def exec_region_command(command: str, input_data: str | None = None) -> Region |
         return None
 
     return {
-        "x": output.get("x", 0),
-        "y": output.get("y", 0),
-        "width": output.get("width", 0),
-        "height": output.get("height", 0),
+        "x": int(output.get("x", 0)),
+        "y": int(output.get("y", 0)),
+        "width": int(output.get("width", 0)),
+        "height": int(output.get("height", 0)),
     }
 
 def send_notification(title: str, description: str) -> None:

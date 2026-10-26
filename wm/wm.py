@@ -4,13 +4,18 @@
 import subprocess
 from abc import ABC, abstractmethod
 
-from utils import Point, Region, exec_region_command
+from utils import Insets, Point, Region, exec_region_command
 
 
 class WM(ABC):
     @abstractmethod
     def get_cursor_position(self) -> Point | None:
         """Get the current cursor position."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_reserved_area(self, monitor_name: str) -> Insets | None:
+        """ Get the reserved areas (e.g. waybar) so that MiniScr can recalculate the offset automatically """
         raise NotImplementedError
 
     @abstractmethod

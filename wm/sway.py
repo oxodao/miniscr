@@ -3,7 +3,7 @@
 
 import os
 
-from utils import Point, Region, exec_command_json, exec_region_command
+from utils import Insets, Point, Region, exec_command_json, exec_region_command
 
 from .wm import Wayland
 
@@ -28,6 +28,40 @@ class Sway(Wayland):
                 return {"x": position["x"], "y": position["y"]}
 
         return None
+
+    def get_reserved_area(self, monitor_name: str) -> Insets | None:
+        outputs = exec_command_json("swaymsg -t get_outputs -r")
+        workspaces = exec_command_json("swaymsg -t get_workspaces -r")
+
+        if not isinstance(outputs, list) or not isinstance(workspaces, list):
+            return None
+
+        output = next(
+            (o for o in outputs if o.get("name") == monitor_name),
+            None,
+        )
+
+        workspace = next(
+            (w for w in workspaces
+            if w.get("output") == monitor_name and w.get("visible")),
+            None,
+        )
+
+        if output is None or workspace is None:
+            return None
+
+        screen = output.get("rect")
+        usable = workspace.get("rect")
+
+        if screen is None or usable is None:
+            return None
+
+        return {
+            "left": usable["x"] - screen["x"],
+            "top": usable["y"] - screen["y"],
+            "right": screen["x"] + screen["width"] - usable["x"] - usable["width"],
+            "bottom": screen["y"] + screen["height"] - usable["y"] - usable["height"],
+        }
 
     def _get_windows(self, node: dict):
         if node.get("pid") is not None and node.get("visible"):
