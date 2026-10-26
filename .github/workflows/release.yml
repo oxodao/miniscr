@@ -35,11 +35,11 @@ jobs:
           mkdir -p dist
           docker run --rm -v "$PWD:/src" -w /src debian:sid bash -c '
             set -eu
+            export DEBIAN_FRONTEND=noninteractive
             apt-get update
             apt-get install -y --no-install-recommends \
-              build-essential debhelper dpkg-dev fakeroot \
-              dh-python pybuild-plugin-pyproject \
-              python3 python3-hatchling
+              build-essential dpkg-dev fakeroot
+            apt-get build-dep -y --no-install-recommends .
             dpkg-buildpackage -us -uc -b
             cp ../miniscr_*.deb /src/dist/
           '
